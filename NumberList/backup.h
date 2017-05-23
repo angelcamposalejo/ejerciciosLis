@@ -1,6 +1,6 @@
 #pragma once  //______________________________________ NumberList.h  
 #include "Resource.h"
-class NumberList: public Win::Dialog
+class NumberList : public Win::Dialog
 {
 public:
 	NumberList()
@@ -9,13 +9,18 @@ public:
 	~NumberList()
 	{
 	}
+	vector<int>lista;
 protected:
 	//______ Wintempla GUI manager section begin: DO NOT EDIT AFTER THIS LINE
 	Win::Label lb1;
 	Win::Textbox tbxList;
 	Win::Label lb2;
 	Win::Textbox tbxNumber;
-	Win::Button bt1;
+	Win::Button btInsert;
+	Win::Textbox tbxMax;
+	Win::Textbox tbxMin;
+	Win::Label lb3;
+	Win::Label lb4;
 protected:
 	Win::Gdi::Font fontArial014A;
 	void GetDialogTemplate(DLGTEMPLATE& dlgTemplate)
@@ -32,21 +37,29 @@ protected:
 		tbxList.Create(WS_EX_CLIENTEDGE, NULL, WS_CHILD | WS_TABSTOP | WS_VISIBLE | ES_AUTOHSCROLL | ES_AUTOVSCROLL | ES_MULTILINE | ES_READONLY | ES_LEFT | ES_WINNORMALCASE, 12, 46, 143, 116, hWnd, 1001);
 		lb2.Create(NULL, L"New Number", WS_CHILD | WS_VISIBLE | SS_LEFT | SS_WINNORMAL, 178, 8, 83, 25, hWnd, 1002);
 		tbxNumber.Create(WS_EX_CLIENTEDGE, NULL, WS_CHILD | WS_TABSTOP | WS_VISIBLE | ES_AUTOHSCROLL | ES_LEFT | ES_WINNORMALCASE, 178, 47, 88, 25, hWnd, 1003);
-		bt1.Create(NULL, NULL, WS_CHILD | WS_TABSTOP | WS_VISIBLE | BS_PUSHBUTTON | BS_CENTER | BS_VCENTER, 272, 45, 70, 27, hWnd, 1004);
+		btInsert.Create(NULL, L"Insert", WS_CHILD | WS_TABSTOP | WS_VISIBLE | BS_PUSHBUTTON | BS_CENTER | BS_VCENTER, 272, 45, 70, 28, hWnd, 1004);
+		tbxMax.Create(WS_EX_CLIENTEDGE, NULL, WS_CHILD | WS_TABSTOP | WS_VISIBLE | ES_AUTOHSCROLL | ES_READONLY | ES_LEFT | ES_WINNORMALCASE, 252, 88, 90, 25, hWnd, 1005);
+		tbxMin.Create(WS_EX_CLIENTEDGE, NULL, WS_CHILD | WS_TABSTOP | WS_VISIBLE | ES_AUTOHSCROLL | ES_LEFT | ES_WINNORMALCASE, 253, 124, 89, 25, hWnd, 1006);
+		lb3.Create(NULL, L"Maximo", WS_CHILD | WS_VISIBLE | SS_LEFT | SS_WINNORMAL, 177, 90, 72, 25, hWnd, 1007);
+		lb4.Create(NULL, L"Minimo", WS_CHILD | WS_VISIBLE | SS_LEFT | SS_WINNORMAL, 177, 127, 74, 25, hWnd, 1008);
 		fontArial014A.Create(L"Arial", 14, false, false, false, false);
 		lb1.Font = fontArial014A;
 		tbxList.Font = fontArial014A;
 		lb2.Font = fontArial014A;
 		tbxNumber.Font = fontArial014A;
-		bt1.Font = fontArial014A;
+		btInsert.Font = fontArial014A;
+		tbxMax.Font = fontArial014A;
+		tbxMin.Font = fontArial014A;
+		lb3.Font = fontArial014A;
+		lb4.Font = fontArial014A;
 	}
 	//_________________________________________________
-	void bt1_Click(Win::Event& e);
+	void btInsert_Click(Win::Event& e);
 	void Window_Open(Win::Event& e);
 	//_________________________________________________
 	bool EventHandler(Win::Event& e)
 	{
-		if (bt1.IsEvent(e, BN_CLICKED)) {bt1_Click(e); return true;}
+		if (btInsert.IsEvent(e, BN_CLICKED)) {btInsert_Click(e); return true;}
 		return false;
 	}
 };
